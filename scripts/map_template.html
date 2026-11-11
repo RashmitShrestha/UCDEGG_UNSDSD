@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coal Plants &amp; Truck Freight</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+  :root {
+    --bg: #ffffff; --fg: #1f2328; --muted: #656d76; --line: #d0d7de;
+    --retired: #1a7f5a; --by2030: #d1495b; --after2030: #edae49; --none: #8c959f;
+    --truck: #3d5a80;
+  }
+  html, body { height: 100%; margin: 0; background: var(--bg); color: var(--fg);
+    font: 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  #map { position: absolute; inset: 0; }
+  .panel { background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.12); padding: 10px 12px; }
+  .title { max-width: 300px; }
+  .title h1 { font-size: 15px; margin: 0 0 4px; }
+  .title p { margin: 0; color: var(--muted); }
+  .legend { min-width: 190px; }
+  .legend h2 { font-size: 12px; margin: 8px 0 4px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  .legend h2:first-child { margin-top: 0; }
+  .legend label { display: flex; align-items: center; gap: 8px; cursor: pointer; padding: 1px 0; }
+  .legend input { margin: 0; }
+  .sw-dot { width: 12px; height: 12px; border-radius: 50%; border: 1px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.25); flex: none; }
+  .sw-line { width: 22px; background: var(--truck); border-radius: 2px; flex: none; }
+  .count { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .src { font-size: 11px; color: var(--muted); margin-top: 8px; border-top: 1px solid var(--line); padding-top: 6px; }
+  .popup b { font-size: 14px; }
+  .popup table { border-collapse: collapse; margin-top: 4px; }
+  .popup td { padding: 1px 0; vertical-align: top; }
+  .popup td:first-child { color: var(--muted); padding-right: 10px; white-space: nowrap; }
+  .tag { display: inline-block; font-size: 11px; padding: 1px 6px; border-radius: 9px; color: #fff; margin-left: 4px; vertical-align: 1px; }
+  @media (max-width: 600px) {
+    .title { max-width: calc(100vw - 80px); }
+    .title p { display: none; }
+    .legend { min-width: 0; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+const TRUCKS = /*TRUCKS*/null;
+const PLANTS = /*PLANTS*/null;
+
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const fmt = v => v == null ? "—" : Number(v).toLocaleString("en-US");
+
+const map = L.map("map", { preferCanvas: true, minZoom: 3 }).fitBounds([[24.5, -124.8], [49.4, -66.9]], { paddingTopLeft: [0, 60], paddingBottomRight: [0, 0] });
+L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+  maxZoom: 16, attribution: "Basemap &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors"
+}).addTo(map);
+
+// ---- Truck flows ----
+const TRUCK_BINS = [
+  { id: "t1", label: "1,000–2,500", min: 1000, max: 2500, w: 1.2, o: 0.45 },
+  { id: "t2", label: "2,500–5,000", min: 2500, max: 5000, w: 2.2, o: 0.6 },
+  { id: "t3", label: "5,000+",      min: 5000, max: Infinity, w: 3.6, o: 0.75 },
+];
+const layers = {};
+for (const b of TRUCK_BINS) {
+  layers[b.id] = L.geoJSON(TRUCKS, {
+    filter: f => f.properties.t >= b.min && f.properties.t < b.max,
+    style: { color: css("--truck"), weight: b.w, opacity: b.o },
+  }).bindTooltip(l => `${l.feature.properties.r || "Route"} · ${fmt(l.feature.properties.t)} trucks/day`, { sticky: true });
+}
+
+// ---- Plants ----
+const CATS = [
+  { id: "retired",   label: "Retired 2015–2025",  color: css("--retired") },
+  { id: "by2030",    label: "Retiring by 2030",   color: css("--by2030") },
+  { id: "after2030", label: "Retiring 2031+",     color: css("--after2030") },
+  { id: "none",      label: "No retirement date", color: css("--none") },
+];
+const radius = mw => Math.max(3, Math.sqrt(mw) / 3.2);
+
+function popup(p, c) {
+  const rows = [["Owner", p.o], ["State", p.s], ["Coal capacity", fmt(p.mw) + " MW"]];
+  if (p.c === "retired") rows.push(["Retired", p.y]);
+  else {
+    rows.push(["Units", p.u]);
+    rows.push(["First planned retirement", p.y ?? "None announced"]);
+  }
+  if (p.c === "retired" && p.nl != null) {
+    rows.push(["Grid export capacity", "~" + fmt(p.mw) + " MW (former nameplate)"]);
+    rows.push(["Transmission ≤1 mi", p.nl ? `up to ${fmt(p.kv)} kV (${p.nl} mapped segment${p.nl > 1 ? "s" : ""})` : "None mapped"]);
+  }
+  rows.push(["Nearest freight route", `${p.fr ?? "—"} (${p.fd} mi)`]);
+  rows.push(["Busiest segment ≤10 mi", p.mt ? fmt(p.mt) + " trucks/day" : "None ≥1,000/day"]);
+  return `<div class="popup"><b>${p.n}</b><span class="tag" style="background:${c.color}">${c.label}</span>
+    <table>${rows.map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join("")}</table></div>`;
+}
+
+const counts = {};
+for (const c of CATS) {
+  const pts = PLANTS.filter(p => p.c === c.id).sort((a, b) => b.mw - a.mw);
+  counts[c.id] = pts.length;
+  layers[c.id] = L.layerGroup(pts.map(p => L.circleMarker([p.la, p.lo], {
+      radius: radius(p.mw), color: "#fff", weight: 1, fillColor: c.color, fillOpacity: 0.85,
+    }).bindTooltip(p.n).bindPopup(popup(p, c), { maxWidth: 320 })));
+}
+
+// default view: trucks + retired plants + plants retiring by 2030
+for (const id of ["t1", "t2", "t3", "none", "after2030", "by2030", "retired"]) layers[id].addTo(map);
+
+// ---- Controls ----
+const Title = L.Control.extend({ options: { position: "topleft" }, onAdd() {
+  const d = L.DomUtil.create("div", "panel title");
+  d.innerHTML = `<h1>Coal plants &amp; heavy-truck corridors</h1>
+    <p>Retired and retiring U.S. coal plants against 2022 freight-truck volumes. Green sites are retired plants with grid connections already in place — candidate EV-truck charging hubs.</p>`;
+  L.DomEvent.disableClickPropagation(d);
+  return d;
+}});
+const Legend = L.Control.extend({ options: { position: "bottomleft" }, onAdd() {
+  const d = L.DomUtil.create("div", "panel legend");
+  const row = (id, sw, label, n) => `<label><input type="checkbox" data-id="${id}" ${map.hasLayer(layers[id]) ? "checked" : ""}>${sw}<span>${label}</span>${n != null ? `<span class="count">${n}</span>` : ""}</label>`;
+  d.innerHTML =
+    `<h2>Coal plants (size ∝ MW)</h2>` +
+    CATS.map(c => row(c.id, `<span class="sw-dot" style="background:${c.color}"></span>`, c.label, counts[c.id])).join("") +
+    `<h2>Trucks per day</h2>` +
+    TRUCK_BINS.map(b => row(b.id, `<span class="sw-line" style="height:${b.w + 0.5}px;opacity:${b.o + 0.2}"></span>`, b.label)).join("") +
+    `<div class="src">Plants: EIA-860M (Sep 2026) · Trucks: FHWA FAF5 2022 network assignment (modeled) · Lines: HIFLD</div>`;
+  d.addEventListener("change", e => {
+    const l = layers[e.target.dataset.id];
+    e.target.checked ? l.addTo(map) : map.removeLayer(l);
+    layers.retired && map.hasLayer(layers.retired) && layers.retired.eachLayer(m => m.bringToFront());
+  });
+  L.DomEvent.disableClickPropagation(d);
+  L.DomEvent.disableScrollPropagation(d);
+  return d;
+}});
+map.addControl(new Title());
+map.addControl(new Legend());
+</script>
+</body>
+</html>

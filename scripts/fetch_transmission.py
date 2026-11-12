@@ -8,6 +8,7 @@ Usage: python scripts/fetch_transmission.py INPUT.csv OUTPUT.csv [--min-mw COL M
 HIFLD answers are cached in data/cache/hifld/ (keyed by coordinates), so only
 new plants are queried on later runs. Delete that folder to re-query everything.
 """
+
 import argparse
 import json
 import time

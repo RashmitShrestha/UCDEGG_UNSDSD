@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plant Siting Dashboard</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="dashboard/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <button id="sidebar-toggle" class="icon-btn" aria-controls="sidebar" aria-expanded="false" title="Filters">☰</button>
+  <div class="titles">
+    <h1>Idle &amp; retired power plants: siting dashboard</h1>
+    <p>Fossil plant sites vs. heavy-truck corridors, transmission, solar &amp; wind resource and local grid mix</p>
+  </div>
+  <button id="theme-toggle" class="icon-btn" title="Toggle light/dark">◐</button>
+</header>
+
+<div class="layout">
+  <aside id="sidebar" class="sidebar" aria-label="Filters">
+    <section>
+      <label class="field-label" for="search">Search</label>
+      <input id="search" type="search" placeholder="Plant, owner, county, state…" autocomplete="off">
+    </section>
+
+    <section>
+      <div class="section-head"><h2>Sort</h2></div>
+      <div class="row">
+        <select id="sort-field" aria-label="Sort by"></select>
+        <button id="sort-dir" class="btn" title="Toggle direction">↓</button>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>Plant type</h2></div>
+      <div id="f-category" class="checks"></div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>Main fuel</h2></div>
+      <div id="f-fuel" class="checks"></div>
+    </section>
+
+    <section>
+      <label class="field-label" for="f-state">State</label>
+      <select id="f-state"><option value="">All states</option></select>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>Thresholds</h2></div>
+      <p class="hint">A threshold that's moved off its end hides plants with no data for it.</p>
+      <div id="f-ranges"></div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>Suitability score weights</h2></div>
+      <p class="hint">Score = weighted average of each plant's percentile rank (0–100). A factor with no data counts as the worst rank, so gaps never raise a score.</p>
+      <div id="weights"></div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>Map</h2></div>
+      <label class="field-label" for="color-by">Color plants by</label>
+      <select id="color-by"></select>
+      <div class="field-label" style="margin-top:10px">Trucks per day (FAF5 2022)</div>
+      <div id="f-trucks" class="checks"></div>
+    </section>
+
+    <button id="reset" class="btn wide">Reset all filters</button>
+  </aside>
+
+  <main class="main">
+    <div id="status" class="status" role="status">Loading CSVs…</div>
+
+    <div id="kpis" class="kpis"></div>
+
+    <div class="map-row">
+      <div class="card map-card">
+        <div id="map"></div>
+        <div id="map-legend" class="map-legend"></div>
+      </div>
+      <div class="card detail" id="detail">
+        <p class="empty">Click a plant on the map, chart or table to see its details, local grid mix and every field from the CSVs.</p>
+      </div>
+    </div>
+
+    <div class="charts">
+      <div class="card chart-card">
+        <div class="card-head"><h3>Plants by type</h3>
+          <div class="seg" id="type-metric"><button data-v="count" class="on">Count</button><button data-v="mw">MW</button></div>
+        </div>
+        <div class="chart-box"><canvas id="c-type"></canvas></div>
+        <p class="note">Click a bar to show only that type.</p>
+      </div>
+      <div class="card chart-card">
+        <div class="card-head"><h3>Capacity by main fuel (MW)</h3></div>
+        <div class="chart-box"><canvas id="c-fuel"></canvas></div>
+      </div>
+      <div class="card chart-card">
+        <div class="card-head"><h3>Top 12 states by capacity (MW)</h3></div>
+        <div class="chart-box"><canvas id="c-state"></canvas></div>
+        <p class="note">Click a bar to filter to that state.</p>
+      </div>
+      <div class="card chart-card">
+        <div class="card-head"><h3>Solar vs. wind resource</h3></div>
+        <div class="chart-box"><canvas id="c-scatter"></canvas></div>
+        <p class="note">Each dot is a plant. Up-and-right is better for both.</p>
+      </div>
+      <div class="card chart-card">
+        <div class="card-head"><h3>Suitability score distribution</h3></div>
+        <div class="chart-box"><canvas id="c-score"></canvas></div>
+      </div>
+      <div class="card chart-card">
+        <div class="card-head"><h3>Grid mix where these plants sit</h3></div>
+        <div id="mix-summary" class="mix-summary"></div>
+        <p class="note">Operating capacity in each plant's county, averaged across the plants shown (EIA-860M). Plants in counties with no operating generators are left out.</p>
+      </div>
+    </div>
+
+    <div class="card table-card">
+      <div class="card-head">
+        <h3 id="table-title">Plants</h3>
+        <button id="export" class="btn">Download filtered CSV</button>
+      </div>
+      <div class="table-wrap"><table id="table"><thead></thead><tbody></tbody></table></div>
+    </div>
+
+    <footer class="sources">
+      <b>Sources.</b>
+      Plants, capacity &amp; county/state capacity mix: U.S. EIA Form 860M (<a href="https://www.eia.gov/electricity/data/eia860m/" target="_blank" rel="noopener">eia.gov</a>).
+      Truck flows: FHWA/BTS Freight Analysis Framework v5, 2022 network assignment (modeled).
+      Transmission: DHS/CISA HIFLD Electric Power Transmission Lines.
+      Solar &amp; wind: NASA Langley POWER climatology API, 2001–2025 annual means (CERES SYN1deg ~1° solar, MERRA-2 0.5°×0.625° wind) (<a href="https://power.larc.nasa.gov/" target="_blank" rel="noopener">power.larc.nasa.gov</a>); 100 m wind is extrapolated from 10 m and 50 m with a power law.
+      Basemap © Esri.
+    </footer>
+  </main>
+</div>
+<script src="dashboard/app.js"></script>
+</body>
+</html>

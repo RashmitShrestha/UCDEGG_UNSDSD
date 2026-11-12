@@ -9,8 +9,14 @@ Steps:
   2. coal plant layers + truck proximity          scripts/build_coal_plants.py
   3. idle coal/gas/oil plants + truck proximity   scripts/idle_fossil_plants.py
   4. transmission lines near each site (cached)   scripts/fetch_transmission.py
+     (retired, idle >=20 MW and operating coal plants)
   5. headline numbers -> summary_stats.md         scripts/summary_stats.py
-  6. interactive map -> coal_trucks_interactive.html   scripts/build_map.py
+  6. solar + wind resource at each site (cached)  scripts/fetch_resource.py
+  7. county / state capacity mix                  scripts/grid_mix.py
+  8. truck network as CSV for the dashboard       scripts/export_trucks.py
+
+Python only writes CSVs. The dashboard (index.html) reads them in the browser,
+so it needs no rebuild: serve the folder (python -m http.server) and reload.
 
 analysis.md is hand-written: compare it against summary_stats.md afterwards.
 """
@@ -38,6 +44,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--eia", type=Path, help="EIA-860M workbook (default: download the latest)")
     ap.add_argument("--skip-transmission", action="store_true")
+    ap.add_argument("--skip-resource", action="store_true", help="skip the NASA POWER queries")
     a = ap.parse_args()
 
     if a.eia:
@@ -55,8 +62,12 @@ def main() -> None:
         run("fetch_transmission.py", "retired_plants_truck_proximity.csv", "retired_plants_transmission.csv")
         run("fetch_transmission.py", "idle_fossil_plants.csv", "idle_plants_transmission.csv",
             "--min-mw", "idle_fossil_mw", "20")
+        run("fetch_transmission.py", "coal_plants_truck_proximity.csv", "coal_plants_transmission.csv")
     run("summary_stats.py", release)
-    run("build_map.py", xlsx)
+    if not a.skip_resource:
+        run("fetch_resource.py")
+    run("grid_mix.py", xlsx)
+    run("export_trucks.py")
     print("\nAll outputs updated. Check summary_stats.md against analysis.md for changed numbers.")
 
 

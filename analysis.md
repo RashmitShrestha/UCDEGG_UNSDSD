@@ -163,8 +163,15 @@ Transmission (`idle_plants_transmission.csv`, the 61 plants in the lower 48 that
 |---|---|---|
 | Coal plant capacity, retirement status and dates | U.S. EIA, **Form EIA-860M "Monthly Update to the Annual Electric Generator Report"**, Sep 2026 release. https://www.eia.gov/electricity/data/eia860m/ | Plant lists, MW, retired / planned retirement years (`coal_trucks.gpkg` plant layers) |
 | Heavy-truck flows | U.S. DOT FHWA / BTS, **Freight Analysis Framework v5 (FAF5), 2022 highway network assignment**. https://ops.fhwa.dot.gov/freight/freight_analysis/faf/ | Trucks/day per road segment (`faf5_truck_flows_2022_1000plus` layer, segments ≥1,000 trucks/day) |
-| Transmission lines | DHS / CISA **HIFLD "Electric Power Transmission Lines"** (ArcGIS feature service, last data edit Sep 2023). https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Electric_Power_Transmission_Lines/FeatureServer/0 | Line voltage near each retired plant |
-| Basemap | Esri World Light Gray Canvas | Interactive map only |
+| Transmission lines | DHS / CISA **HIFLD "Electric Power Transmission Lines"** (ArcGIS feature service, last data edit Sep 2023). https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Electric_Power_Transmission_Lines/FeatureServer/0 | Line voltage near each retired, idle (≥20 MW) and operating coal plant |
+| Solar and wind resource | NASA Langley Research Center **POWER Climatology API** (v2, "RE" community), 2001–2025 annual means. Solar from CERES SYN1deg (~1° grid), wind and temperature from NASA GMAO MERRA-2 (0.5° × 0.625°). https://power.larc.nasa.gov/ | GHI, DNI, clearness index, 10 m / 50 m wind and mean temperature at each plant (`site_resource.csv`) |
+| Local grid mix | U.S. EIA-860M (same workbook), every generator with status "operating" | Installed capacity by resource type per county and per state (`county_grid_mix.csv`, `state_grid_mix.csv`) |
+| Basemap | Esri World Light/Dark Gray Canvas | Dashboard only |
+
+Caveats for the newer layers:
+- **Solar and wind are coarse grid-cell averages.** A ~1° solar cell is about 100 km across, so these values work for comparing regions, not for sizing a specific array or turbine. Use NREL NSRDB / WIND Toolkit or a site measurement for that.
+- **100 m wind (`wind_100m_ms_est`) is an estimate**, not a NASA product. It extrapolates the 50 m speed with a power law whose shear exponent comes from the 10 m / 50 m pair, clamped to 0.05–0.45.
+- **The grid mix is installed capacity, not generation.** A county with a large standby gas plant shows a lot of gas even if that plant rarely runs. Counties with no operating generator of 1 MW or more have no county row: 59 of the 755 dashboard plants, mostly retired sites. The dashboard shows the state mix for those. Generation shares would need EIA-923.
 
 The plant layers in `coal_trucks.gpkg` are rebuilt from the EIA workbook by `scripts/build_coal_plants.py`, which reproduces the original Sep 2026 layers exactly (same 206 operating and 184 retired plants, same MW). The FAF5 truck layer is fixed input and isn't rebuilt.
 
@@ -182,8 +189,12 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt   # once
 1. `scripts/fetch_eia.py` finds and downloads the latest monthly workbook into `data/raw/eia860m/` (git-ignored). EIA-860M is cumulative, so only the newest file is needed.
 2. `scripts/build_coal_plants.py` → coal plant layers in `coal_trucks.gpkg`, `coal_plants_truck_proximity.csv`, `retired_plants_truck_proximity.csv`
 3. `scripts/idle_fossil_plants.py` → `idle_fossil_units.csv`, `idle_fossil_plants.csv`
-4. `scripts/fetch_transmission.py` → `retired_plants_transmission.csv`, `idle_plants_transmission.csv`. It queries HIFLD, about 10 minutes the first time. Results are cached in `data/cache/hifld/`, so later runs only query new plants. Use `--skip-transmission` to skip this step.
+4. `scripts/fetch_transmission.py` → `retired_plants_transmission.csv`, `idle_plants_transmission.csv`, `coal_plants_transmission.csv`. It queries HIFLD, about 10 minutes the first time. Results are cached in `data/cache/hifld/`, so later runs only query new plants. Use `--skip-transmission` to skip this step.
 5. `scripts/summary_stats.py` → `summary_stats.md` (headline numbers, auto-generated)
-6. `scripts/build_map.py` + `scripts/map_template.html` → `coal_trucks_interactive.html`
+6. `scripts/fetch_resource.py` → `site_resource.csv` (NASA POWER, cached in `data/cache/nasa_power/`; `--skip-resource` skips it)
+7. `scripts/grid_mix.py` → `county_grid_mix.csv`, `state_grid_mix.csv`
+8. `scripts/export_trucks.py` → `truck_routes.csv` (the FAF5 layer as CSV with WKT geometry, for the dashboard)
+
+The dashboard (`index.html` + `dashboard/`) has no build step. It reads these CSVs in the browser, so run `python -m http.server 8000` in the repo folder and open http://localhost:8000. See the README for what each script and dashboard feature does.
 
 This document is written by hand. After an update, compare its tables with `summary_stats.md` and copy over any changed numbers. `coal_trucks_conus.png` is a static image from the original analysis and is not regenerated.

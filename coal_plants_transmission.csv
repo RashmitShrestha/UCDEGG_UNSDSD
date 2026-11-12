@@ -1,0 +1,207 @@
+Plant ID,plant,owner,state,lat,lon,coal_mw,n_lines_1mi,n_lines_unknown_kv,max_kv,voltages_kv,line_thermal_mw_est,line_thermal_n1_mw_est
+3,Barry,Alabama Power Co,AL,31.0069,-88.0103,1192.5,19,0,230.0,230;115,5550.0,5100.0
+26,E C Gaston,Alabama Power Co,AL,33.244211,-86.45806,952.0,12,0,230.0,230,5400.0,4950.0
+59,Platte,City of Grand Island - (NE),NE,40.854765,-98.34822,109.8,6,0,230.0,230;115,1200.0,750.0
+60,Whelan Energy Center,City of Hastings - (NE),NE,40.580872,-98.31244,324.3,5,0,115.0,115,750.0,600.0
+108,Holcomb,Sunflower Electric Power Corp,KS,37.9308,-100.9725,348.7,10,0,345.0,345;115,5700.0,4500.0
+130,Cross,South Carolina Public Service Authority,SC,33.371506,-80.11324,2451.5,7,0,230.0,230,3150.0,2700.0
+136,Seminole (FL),Seminole Electric Cooperative Inc,FL,29.733056,-81.63278,714.6,11,0,230.0,230,4950.0,4500.0
+160,Apache Station,Arizona Electric Pwr Coop Inc,AZ,32.0603,-109.8931,204.0,5,0,230.0,230;115,1650.0,1200.0
+165,GREC,Grand River Dam Authority,OK,36.190278,-95.2894,594.0,16,0,345.0,345;161,10650.0,9450.0
+298,Limestone,NRG Texas Power LLC,TX,31.4219,-96.2525,1849.8,5,0,345.0,345;138,5000.0,3800.0
+470,Comanche (CO),Public Service Co of Colorado,CO,38.2081,-104.5747,1252.8,16,0,345.0,345;230;115,9150.0,7950.0
+525,Hayden,Public Service Co of Colorado,CO,40.4856,-107.185,465.4,14,0,230.0,230;138;115,4650.0,4200.0
+564,Stanton Energy Center,Orlando Utilities Comm,FL,28.4822,-81.1678,929.0,16,0,230.0,230;115,6900.0,6450.0
+602,Brandon Shores,Brandon Shores LLC,MD,39.182073,-76.53715,1370.2,21,0,230.0,230;115,8250.0,7800.0
+628,Crystal River,"Duke Energy Florida, LLC",FL,28.9656,-82.6977,1478.4,10,0,500.0,500;230,10650.0,8150.0
+667,Northside Generating Station,JEA,FL,30.4172,-81.5525,595.0,16,0,230.0,230;138,5700.0,5250.0
+703,Bowen,Georgia Power Co,GA,34.1256,-84.9222,3498.6,19,0,500.0,500;230;115,20800.0,18300.0
+876,Kincaid Generation LLC,Dynegy Kincaid Generation,IL,39.590556,-89.49639,1319.0,5,0,345.0,345,6000.0,4800.0
+879,Powerton,Midwest Generations EME LLC,IL,40.5408,-89.6786,1785.6,14,0,345.0,345;138,7800.0,6600.0
+889,Baldwin Energy Complex,Dynegy Midwest Generation Inc,IL,38.205,-89.8544,1259.6,8,0,345.0,345;138,7600.0,6400.0
+963,Dallman,City of Springfield - (IL),IL,39.754803,-89.60239,230.1,8,0,138.0,138,1600.0,1400.0
+976,Marion,Southern Illinois Power Coop,IL,37.619747,-88.95311,99.0,6,0,161.0,161,1500.0,1250.0
+983,Clifty Creek,Indiana-Kentucky Electric Corp,IN,38.7378,-85.4206,1303.8,14,0,765.0,765;345;138,21200.0,17200.0
+994,AES Petersburg,AES Indiana,IN,38.5281,-87.2525,1341.8,12,0,345.0,345;161;138,8650.0,7450.0
+997,Michigan City,Northern Indiana Pub Serv Co,IN,41.7208,-86.9086,540.0,10,0,345.0,345;138,6000.0,4800.0
+1001,Cayuga,"Duke Energy Indiana, LLC",IN,39.9242,-87.4244,1062.0,8,0,345.0,345;230,7350.0,6150.0
+1004,Edwardsport,"Duke Energy Indiana, LLC",IN,38.8067,-87.2472,331.5,8,0,345.0,345;138,4600.0,3400.0
+1012,F B Culley,Southern Indiana Gas & Elec Co,IN,37.9111,-87.3275,368.9,26,0,138.0,138,5200.0,5000.0
+1040,Whitewater Valley,City of Richmond - (IN),IN,39.8028,-84.8953,93.9,1,0,138.0,138,200.0,0.0
+1073,Prairie Creek,Interstate Power and Light Co,IA,41.944039,-91.63917,50.0,9,0,161.0,161;115,1650.0,1400.0
+1082,Walter Scott Jr Energy Center,MidAmerican Energy Co,IA,41.18,-95.8408,1648.3,15,0,345.0,345;161,8500.0,7300.0
+1091,George Neal North,MidAmerican Energy Co,IA,42.32517,-96.37971,584.1,17,0,345.0,345;161,11850.0,10650.0
+1167,Muscatine Plant #1,Board of Water Electric & Communications,IA,41.3917,-91.0569,275.5,3,0,161.0,161,750.0,500.0
+1241,La Cygne,Evergy Metro,KS,38.3481,-94.6456,1598.9,5,0,345.0,345,6000.0,4800.0
+1250,Lawrence Energy Center,"Evergy Kansas Central, Inc",KS,39.0072,-95.26917,517.0,8,0,230.0,230;115,2100.0,1650.0
+1355,E W Brown,Kentucky Utilities Co,KY,37.78831,-84.71257,464.0,27,0,345.0,345;138,9400.0,8200.0
+1356,Ghent,Kentucky Utilities Co,KY,38.7497,-85.035,2225.9,13,0,345.0,345;138,9600.0,8400.0
+1364,Mill Creek (KY),Louisville Gas & Electric Co,KY,38.0525,-85.9103,1361.7,7,0,345.0,345;138,5400.0,4200.0
+1379,Shawnee,Tennessee Valley Authority,KY,37.1517,-88.775,1575.0,18,0,500.0,500;345;161,8650.0,6150.0
+1384,Cooper,"East Kentucky Power Coop, Inc",KY,36.9981,-84.5919,344.0,6,0,161.0,161,1500.0,1250.0
+1393,R S Nelson,Entergy Louisiana LLC,LA,30.2844,-93.2911,614.6,16,0,500.0,500;230;138,9550.0,7050.0
+1710,J H Campbell,Consumers Energy Co - (MI),MI,42.910296,-86.20074,1560.8,14,0,345.0,345;138,9800.0,8600.0
+1733,Monroe (MI),DTE Electric Company,MI,41.8906,-83.3464,3279.6000000000004,10,0,345.0,345;120,9900.0,8700.0
+1893,Clay Boswell,"ALLETE, Inc.",MN,47.2611,-93.6528,922.5,14,0,230.0,230;115,3600.0,3150.0
+1915,Allen S King,Northern States Power Co - Minnesota,MN,45.03,-92.7786,598.4,7,0,345.0,345;115,6300.0,5100.0
+2079,Hawthorn,Evergy Metro,MO,39.1306,-94.4778,569.0,13,0,345.0,345;161,5150.0,3950.0
+2103,Labadie,Union Electric Co - (MO),MO,38.562244,-90.83769,2389.4,13,0,345.0,345,15600.0,14400.0
+2107,Sioux,Union Electric Co - (MO),MO,38.915479,-90.29025,1099.4,20,0,345.0,345;138,7000.0,5800.0
+2167,New Madrid,"Associated Electric Coop, Inc",MO,36.5147,-89.5617,1300.0,16,0,500.0,500;345;161,9100.0,6600.0
+2168,Thomas Hill,"Associated Electric Coop, Inc",MO,39.5522,-92.6381,1181.7,12,0,345.0,345;161,3950.0,2750.0
+2240,Lon Wright,City of Fremont - (NE),NE,41.4281,-96.4623,130.0,0,0,,,0.0,0.0
+2277,Sheldon,Nebraska Public Power District,NE,40.5589,-96.7847,228.7,14,0,345.0,345;115,7350.0,6150.0
+2291,North Omaha,Omaha Public Power District,NE,41.32909,-95.94466,353.6,6,0,161.0,161,1500.0,1250.0
+2364,Merrimack,Granite Shore Power,NH,43.1411,-71.4692,459.2000000000001,7,0,230.0,230;115,1350.0,900.0
+2442,Four Corners,Arizona Public Service Co,NM,36.69,-108.4814,1636.2,9,0,500.0,500;345;230,12650.0,10150.0
+2712,Roxboro,Duke Energy Progress - (NC),NC,36.4833,-79.0731,2558.2,23,0,230.0,230;115,9150.0,8700.0
+2727,Marshall (NC),"Duke Energy Carolinas, LLC",NC,35.5975,-80.9658,1059.5,16,0,230.0,230,7200.0,6750.0
+2817,Leland Olds,Basin Electric Power Coop,ND,47.280769,-101.3212,656.0,16,0,345.0,345;230;115,9600.0,8400.0
+2823,Milton R Young,"Minnkota Power Coop, Inc",ND,47.065854,-101.2131,734.0,16,0,345.0,345;250;230,9450.0,8250.0
+2828,Cardinal,Cardinal Operating Company,OH,40.2522,-80.6486,1880.4,16,0,345.0,345;138,8200.0,7000.0
+2832,Miami Fort,Luminant Miami Fort,OH,39.1128,-84.8036,1114.8000000000002,15,0,345.0,345;138,8000.0,6800.0
+2876,Kyger Creek,Ohio Valley Electric Corp,OH,38.9144,-82.1289,1086.5,7,0,345.0,345,8400.0,7200.0
+2914,Dover (OH),City of Dover - (OH),OH,40.520066,-81.46815,27.5,0,0,,,0.0,0.0
+2935,Orrville,City of Orrville - (OH),OH,40.850964,-81.76576,59.5,4,0,138.0,138,800.0,600.0
+2936,Painesville,City of Painesville - (OH),OH,41.7265,-81.254,53.5,7,0,345.0,345;138,2400.0,1200.0
+2952,Muskogee,Oklahoma Gas & Electric Co,OK,35.76135,-95.28732,572.0,14,0,345.0,345;161,10150.0,8950.0
+2963,Northeastern,Public Service Co of Oklahoma,OK,36.4317,-95.7008,473.0,16,0,345.0,345;138,8200.0,7000.0
+3118,Conemaugh,KeyCon Operating LLC,PA,40.3842,-79.0611,1951.0,6,0,500.0,500;230;115,10600.0,8100.0
+3130,Seward (PA),Seward Generating LLC,PA,40.40625,-79.03366,585.0,10,0,230.0,230;115,2400.0,1950.0
+3136,Keystone,KeyCon Operating LLC,PA,40.6604,-79.3411,1872.0,6,0,500.0,500;345,13700.0,11200.0
+3297,Wateree,"Dominion Energy South Carolina, Inc",SC,33.8264,-80.6228,771.8,12,0,230.0,230;115,4500.0,4050.0
+3298,Williams,"South Carolina Genertg Co, Inc",SC,33.0158,-79.9297,659.7,13,0,230.0,230;115,4650.0,4200.0
+3399,Cumberland (TN),Tennessee Valley Authority,TN,36.3903,-87.6539,2600.0,9,0,500.0,500;161,11250.0,8750.0
+3403,Gallatin (TN),Tennessee Valley Authority,TN,36.3156,-86.4006,1255.2,12,0,161.0,161,3000.0,2750.0
+3407,Kingston,Tennessee Valley Authority,TN,35.8992,-84.5194,1700.0,17,0,161.0,161,4250.0,4000.0
+3470,W A Parish,NRG Texas Power LLC,TX,29.4828,-95.6311,2736.8,26,0,345.0,345;138,20200.0,19000.0
+3845,Transalta Centralia Generation,TransAlta Centralia Gen LLC,WA,46.755938,-122.8598,729.9,14,0,500.0,500;345;230;138,25000.0,22500.0
+3935,John E Amos,Appalachian Power Co,WV,38.4731,-81.8233,2932.6,15,0,765.0,765;345;138,20200.0,16200.0
+3943,FirstEnergy Fort Martin Power Station,Monongahela Power Co,WV,39.710833,-79.9275,1152.0,6,0,500.0,500;138,10400.0,7900.0
+3944,FirstEnergy Harrison Power Station,Monongahela Power Co,WV,39.384167,-80.3325,2052.0,8,0,500.0,500;138,13100.0,10600.0
+3948,Mitchell (WV),Kentucky Power Co,WV,39.8297,-80.8153,1632.6,21,0,765.0,765;500;345;138,30500.0,26500.0
+3954,Mt Storm,Virginia Electric & Power Co,WV,39.2008,-79.2636,1662.4,8,0,500.0,500;115,17650.0,15150.0
+4041,South Oak Creek,Wisconsin Electric Power Co,WI,42.8457,-87.8294,641.6,17,0,345.0,345;230;138,9400.0,8200.0
+4050,Edgewater,Wisconsin Power & Light Co,WI,43.715142,-87.70586,413.7,5,0,345.0,345;138,3000.0,1800.0
+4078,Weston,Wisconsin Public Service Corp,WI,44.8606,-89.6553,945.5,16,0,345.0,345;115,6600.0,5400.0
+4158,Dave Johnston,PacifiCorp,WY,42.8378,-105.7769,816.7,16,0,230.0,230;138;115,5750.0,5300.0
+4162,Naughton,PacifiCorp,WY,41.7581,-110.5983,380.8,11,0,230.0,230;115,4050.0,3600.0
+4271,John P Madgett,Dairyland Power Coop,WI,44.303583,-91.91265,387.0,9,0,345.0,345;161,3200.0,2000.0
+6002,James H Miller Jr,Alabama Power Co,AL,33.6319,-87.0597,2822.0,15,0,500.0,500;230;115,16100.0,13600.0
+6004,Pleasants Power Station,"Omnis Pleasants, LLC",WV,39.366667,-81.29444,1368.0,10,0,500.0,500;138,6600.0,4100.0
+6009,White Bluff,Entergy Arkansas LLC,AR,34.4228,-92.1406,1800.0,8,0,500.0,500;230;115,8550.0,6050.0
+6017,Newton,Illinois Power Generating Co,IL,38.9361,-88.2781,617.4,6,0,345.0,345;138,4200.0,3000.0
+6018,East Bend,Duke Energy Kentucky Inc,KY,38.9036,-84.8514,772.0,3,0,345.0,345,3600.0,2400.0
+6021,Craig (CO),"Tri-State G & T Assn, Inc",CO,40.4627,-107.5912,1427.6,11,0,345.0,345;230,7950.0,6750.0
+6030,Coal Creek,Rainbow Energy Center,ND,47.377743,-101.1571,1209.6,5,0,400.0,400;230,3000.0,1800.0
+6034,Belle River,DTE Electric Company,MI,42.7756,-82.495,1395.0,21,0,345.0,345;230;120,10800.0,9600.0
+6041,H L Spurlock,"East Kentucky Power Coop, Inc",KY,38.7,-83.8181,1608.5,11,0,345.0,345;138,6200.0,5000.0
+6055,Big Cajun 2,Louisiana Generating LLC,LA,30.7261,-91.3692,1276.9,3,0,500.0,500,7500.0,5000.0
+6064,Nearman Creek,City of Kansas City - (KS),KS,39.1681,-94.6975,261.0,5,0,161.0,161,1250.0,1000.0
+6065,Iatan,Evergy Metro,MO,39.4472,-94.98,1753.9,6,0,345.0,345;161,6250.0,5050.0
+6068,Jeffrey Energy Center,"Evergy Kansas Central, Inc",KS,39.286453,-96.11723,2160.0,6,0,345.0,345;230,4950.0,3750.0
+6071,Trimble County,Louisville Gas & Electric Co,KY,38.5847,-85.4117,1400.1,8,0,345.0,345;138,8600.0,7400.0
+6073,Victor J Daniel Jr,Mississippi Power Co,MS,30.5322,-88.5553,1096.6,7,0,500.0,500;230;115,6950.0,4450.0
+6076,Colstrip,Talen Montana LLC,MT,45.8831,-106.614,1647.4,12,0,500.0,500;230;138;115,7100.0,4600.0
+6077,Gerald Gentleman,Nebraska Public Power District,NE,41.0808,-101.1408,1362.6,10,0,345.0,345;230;115,7950.0,6750.0
+6085,R M Schahfer,Northern Indiana Pub Serv Co,IN,41.2164,-87.0261,847.0,9,0,345.0,345;138,7800.0,6600.0
+6090,Sherburne County,Northern States Power Co - Minnesota,MN,45.3808,-93.8931,1704.0,14,0,345.0,345;115,12600.0,11400.0
+6095,Sooner,Oklahoma Gas & Electric Co,OK,36.45307,-97.05279,1138.0,11,0,345.0,345;138,6200.0,5000.0
+6096,Nebraska City,Omaha Public Power District,NE,40.6214,-95.7764,1389.6,9,0,345.0,345;161,8900.0,7700.0
+6098,Big Stone,Otter Tail Power Co,SD,45.303652,-96.51007,450.0,7,0,230.0,230;115,2550.0,2100.0
+6101,Wyodak,PacifiCorp,WY,44.290128,-105.3815,362.1,15,0,230.0,230,6750.0,6300.0
+6113,Gibson,"Duke Energy Indiana, LLC",IN,38.372222,-87.76583,3339.5,9,0,345.0,345;138,9800.0,8600.0
+6138,Flint Creek,Southwestern Electric Power Co,AR,36.2561,-94.5241,558.0,10,0,345.0,345;161,5350.0,4150.0
+6139,Welsh,Southwestern Electric Power Co,TX,33.05522,-94.83999,1116.0,9,0,345.0,345;138,7800.0,6600.0
+6146,Martin Lake,Luminant Generation Company LLC,TX,32.2606,-94.5706,2379.6000000000004,5,0,345.0,345;138,5000.0,3800.0
+6165,Hunter,PacifiCorp,UT,39.1747,-111.0289,1472.2,8,0,345.0,345,9600.0,8400.0
+6166,Rockport,Indiana Michigan Power Co,IN,37.9256,-87.0372,2600.0,6,0,765.0,765;138,12600.0,8600.0
+6177,Coronado,Salt River Project,AZ,34.5789,-109.2708,821.8,3,0,500.0,500;345,6200.0,3700.0
+6178,Coleto Creek,Coleto Creek Power LP,TX,28.7128,-97.21417,622.4,6,0,345.0,345;138,3200.0,2000.0
+6179,Fayette Power Project,Lower Colorado River Authority,TX,29.9172,-96.7506,1690.0,12,0,345.0,345;138,9400.0,8200.0
+6180,Oak Grove (TX),Luminant Generation Company LLC,TX,31.1803,-96.4866,1795.4,8,0,345.0,345;138,8600.0,7400.0
+6183,San Miguel,"San Miguel Electric Coop, Inc",TX,28.7044,-98.4775,410.0,12,0,345.0,345;138,6400.0,5200.0
+6190,Brame Energy Center,Cleco Power LLC,LA,31.395,-92.71667,558.0,6,0,230.0,230,2700.0,2250.0
+6194,Tolk,Southwestern Public Service Co,TX,34.186494,-102.57,1135.8,9,0,345.0,345;230;138,4550.0,3350.0
+6195,John Twitty Energy Center,City Utilities of Springfield - (MO),MO,37.151706,-93.38804,494.0,10,0,345.0,345;161,3450.0,2250.0
+6204,Laramie River Station,Basin Electric Power Coop,WY,42.108889,-104.8825,1863.0,13,0,345.0,345;230;138,11600.0,10400.0
+6213,Merom,"Hallador Power Company, LLC",IN,39.0694,-87.5108,1080.0,6,0,765.0,765;345,10000.0,6000.0
+6249,Winyah,South Carolina Public Service Authority,SC,33.33184,-79.35724,1275.8,10,0,230.0,230;115,3000.0,2550.0
+6250,Mayo,Duke Energy Progress - (NC),NC,36.5278,-78.8917,763.2,3,0,500.0,500,7500.0,5000.0
+6254,Ottumwa,Interstate Power and Light Co,IA,41.0961,-92.55583,725.9,7,0,345.0,345;161,2700.0,1500.0
+6257,Scherer,Georgia Power Co,GA,33.0606,-83.8075,2673.0,9,0,500.0,500;115,20150.0,17650.0
+6264,Mountaineer,Appalachian Power Co,WV,38.9794,-81.9344,1300.0,12,0,765.0,765;138,17600.0,13600.0
+6469,Antelope Valley,Basin Electric Power Coop,ND,47.370542,-101.8357,954.0,7,0,345.0,345,8400.0,7200.0
+6641,Independence Steam Electric Station,Entergy Arkansas LLC,AR,35.678442,-91.40876,1800.0,8,0,500.0,500;161,6500.0,4000.0
+6664,Louisa,MidAmerican Energy Co,IA,41.3181,-91.0931,811.9,8,0,345.0,345;161,5800.0,4600.0
+6705,Warrick,AGC Division of APGI Inc,IN,37.915,-87.3328,822.8,26,0,138.0,138,5200.0,5000.0
+6761,Rawhide,Platte River Power Authority,CO,40.860905,-105.0212,293.6,6,0,230.0,230,2700.0,2250.0
+6768,Sikeston Power Station,City of Sikeston - (MO),MO,36.8791,-89.6209,261.0,5,0,161.0,161,1250.0,1000.0
+6772,Hugo,"Western Farmers Elec Coop, Inc",OK,34.0158,-95.3206,446.0,9,0,345.0,345;138,3800.0,2600.0
+6823,D B Wilson,Big Rivers Electric Corp,KY,37.4497,-87.0806,509.4,7,0,345.0,345;161,3650.0,2450.0
+7030,Major Oak Power,"Major Oak Power, LLC",TX,31.091925,-96.69503,349.2,5,0,345.0,345,6000.0,4800.0
+7097,J K Spruce,City of San Antonio - (TX),TX,29.309722,-98.3203,1488.5,21,0,345.0,345;138,9200.0,8000.0
+7213,Clover,Virginia Electric & Power Co,VA,36.869,-78.704,848.0,6,0,500.0,500;230,4750.0,2250.0
+7343,George Neal South,MidAmerican Energy Co,IA,42.3006,-96.3617,695.9,4,0,345.0,345;161,1950.0,750.0
+7504,Neil Simpson II,"Black Hills Power, Inc.",WY,44.2856,-105.3833,90.0,15,0,230.0,230,6750.0,6300.0
+7790,Bonanza,Deseret Generation & Tran Coop,UT,40.0864,-109.2844,499.5,9,0,345.0,345;138,5800.0,4600.0
+8023,Columbia (WI),Wisconsin Power & Light Co,WI,43.4864,-89.4203,1112.0,7,0,345.0,345;138,6400.0,5200.0
+8066,Jim Bridger,PacifiCorp,WY,41.7378,-108.7875,1161.9,14,0,345.0,345;230;115,10350.0,9150.0
+8069,Huntington,PacifiCorp,UT,39.3792,-111.0781,1015.5,8,0,345.0,345;138,8600.0,7400.0
+8102,"Gavin Power, LLC","Gavin Power, LLC",OH,38.9347,-82.1158,2600.0,10,0,765.0,765;138,17200.0,13200.0
+8219,Ray D Nixon,City of Colorado Springs - (CO),CO,38.633451,-104.7058,207.0,13,0,230.0,230;115,4950.0,4500.0
+8222,Coyote,Otter Tail Power Co,ND,47.221447,-101.8157,450.0,5,0,345.0,345;115,3900.0,2700.0
+8223,Springerville,Tucson Electric Power Co,AZ,34.3186,-109.1639,1765.8000000000002,6,0,345.0,345,7200.0,6000.0
+10113,John B Rich Memorial Power Station,Gilberton Power Co,PA,40.7903,-76.1983,88.4,0,0,,,0.0,0.0
+10143,Colver Green Energy,"Inter-Power/AhlCon Partners, L.P.",PA,40.55108,-78.79794,118.0,2,0,115.0,115,300.0,150.0
+10151,Grant Town Power Plant,American Bituminous Power LP,WV,39.561831,-80.16314,95.7,3,0,138.0,138,600.0,400.0
+10234,Biron Mill,"ND Paper, Inc.",WI,44.43,-89.78,38.5,0,0,,,0.0,0.0
+10343,Foster Wheeler Mt Carmel Cogen,Mount Carmel Cogen Inc,PA,40.811189,-76.45295,47.3,0,0,,,0.0,0.0
+10603,Ebensburg Power,Ebensburg Power Co,PA,40.455,-78.7472,57.6,3,0,115.0,115,450.0,300.0
+10671,River Valley,Oklahoma Gas & Electric Co,OK,35.1931,-94.6458,350.0,3,0,161.0,161,750.0,500.0
+10684,Argus Cogen Plant,Searles Valley Minerals Operations Inc.,CA,35.765,-117.3833,62.5,1,0,115.0,115,150.0,0.0
+10743,Morgantown Energy Facility,Morgantown Energy Associates,WV,39.6397,-79.96056,68.9,2,0,138.0,138,400.0,200.0
+10784,Colstrip Energy LP,Colstrip Energy LP,MT,45.9752,-106.6547,46.1,1,0,115.0,115,150.0,0.0
+10849,Silver Bay Power,Cleveland Cliffs Inc,MN,47.286573,-91.26053,131.6,5,0,115.0,115,750.0,600.0
+10860,Archer Daniels Midland Clinton,Archer Daniels Midland Co,IA,41.8206,-90.2097,180.0,2,0,161.0,161,500.0,250.0
+10864,Archer Daniels Midland Cedar Rapids,Archer Daniels Midland Co,IA,41.9221,-91.6875,256.1,3,0,161.0,161,750.0,500.0
+10865,Archer Daniels Midland Decatur,Archer Daniels Midland Co,IL,39.870074,-88.89076,335.0,8,0,138.0,138,1600.0,1400.0
+50397,Pixelle Specialty Solutions LLC - Spring,Pixelle Specialty Solutions LLC - (PA),PA,39.870935,-76.86812,45.9,4,0,115.0,115,600.0,450.0
+50481,Tennessee Eastman Operations,Eastman Chemical Co-TN Ops,TN,36.5219,-82.5431,110.5,6,0,138.0,138,1200.0,1000.0
+50611,Westwood Generation LLC,"Rausch Creek Generation, LLC",PA,40.6191,-76.45,36.0,0,0,,,0.0,0.0
+50776,Panther Creek Energy Facility,"Panther Creek Power Operating, LLC",PA,40.8556,-75.8781,94.0,0,0,,,0.0,0.0
+50835,TES Filer City Station,TES Filer City Station LP,MI,44.217299,-86.28905,70.0,5,0,138.0,138,1000.0,800.0
+50888,Northampton Generating Company LP,"EIF Northampton GP, LLC",PA,40.6917,-75.4792,134.1,9,0,138.0,138,1800.0,1600.0
+50900,Covington Facility,WestRock Corp,VA,37.799722,-79.9947,44.5,4,0,138.0,138,800.0,600.0
+50933,Rhinelander Mill,Ahlstrom-Munksjo,WI,45.6394,-89.4205,9.3,6,0,115.0,115,900.0,750.0
+50951,Sunnyside Cogen Associates,Sunnyside Cogeneration Assoc,UT,39.5472,-110.3917,58.1,2,0,138.0,138;115,350.0,150.0
+50974,Scrubgrass Reclamation CO. LP.,Scrubgrass Reclamation CO. LP.,PA,41.2691,-79.8134,94.7,2,0,115.0,115,300.0,150.0
+54210,American Crystal Sugar Hillsboro,American Crystal Sugar Co,ND,47.437562,-97.06311,13.3,0,0,,,0.0,0.0
+54211,American Crystal Sugar Moorhead,American Crystal Sugar Co,MN,46.9026,-96.76112,5.0,2,0,115.0,115,300.0,150.0
+54212,American Crystal Sugar Crookston,American Crystal Sugar Co,MN,47.76468,-96.63338,6.5,4,0,115.0,115,600.0,450.0
+54213,American Crystal Sugar Drayton,American Crystal Sugar Co,ND,48.593158,-97.17608,6.0,1,0,115.0,115,150.0,0.0
+54214,American Crystal Sugar East Grand Forks,American Crystal Sugar Co,MN,47.927202,-97.00715,7.5,0,0,,,0.0,0.0
+54276,Univ of NC Chapel Hill Cogen Facility,University of North Carolina,NC,35.9069,-79.0617,28.0,0,0,,,0.0,0.0
+54318,General Chemical,Tata Chemicals Partners,WY,41.5933,-109.7542,30.0,0,0,,,0.0,0.0
+54533,Southern Minnesota Beet Sugar,Southern Minnesota Beet Sugar,MN,44.796405,-95.17979,7.5,1,0,230.0,230,450.0,0.0
+54634,St Nicholas Cogen Project,Schuylkill Energy Resource Inc,PA,40.8222,-76.1736,99.2,0,0,,,0.0,0.0
+54867,Neenah Paper Munising Mill,Neenah Paper Michigan Inc.,MI,46.4094,-86.6443,6.2,2,0,138.0,138,400.0,200.0
+55076,Red Hills Generating Facility,"Choctaw Generation L.P, L.L.L.P.",MS,33.3761,-89.2183,513.7,6,0,500.0,500;161,8250.0,5750.0
+55479,Wygen 1,Black Hills Ontario LLC,WY,44.2858,-105.3833,90.0,15,0,230.0,230,6750.0,6300.0
+55749,Hardin Generator Project,Heorot Power Management,MT,45.7578,-107.6,115.7,6,0,230.0,230;115,1500.0,1050.0
+55856,Prairie State Generating Station,Prairie State Generating Co LLC,IL,38.279167,-89.66694,1766.0,12,0,345.0,345;230;138,10650.0,9450.0
+56068,Elm Road Generating Station,Wisconsin Electric Power Co,WI,42.8492,-87.8336,1402.6,17,0,345.0,345;230;138,9400.0,8200.0
+56224,TS Power Plant,"Nevada Gold Energy, LLC",NV,40.7461,-116.5297,242.0,1,0,120.0,120,150.0,0.0
+56319,Wygen 2,"Black Hills Power, Inc.",WY,44.2919,-105.3811,95.0,15,0,230.0,230,6750.0,6300.0
+56456,Plum Point Energy Station,NRG Energy Services - Plum Point,AR,35.6644,-89.9489,720.0,2,0,500.0,500,5000.0,2500.0
+56564,John W Turk Jr Power Plant,Southwestern Electric Power Co,AR,33.649722,-93.81194,609.0,6,0,345.0,345;138;115,3150.0,1950.0
+56596,Wygen III,"Black Hills Power, Inc.",WY,44.2919,-105.3806,116.0,15,0,230.0,230,6750.0,6300.0
+56609,Dry Fork Station,Basin Electric Power Coop,WY,44.388889,-105.4608,483.7,9,0,230.0,230;115,2850.0,2400.0
+56611,Sandy Creek Energy Station,Sandy Creek Energy Associates LP,TX,31.474378,-96.95715,1008.0,5,0,345.0,345;138,5000.0,3800.0
+56671,Longview Power Plant,"Longview Power, LLC",WV,39.707893,-79.95897,807.5,3,0,500.0,500,7500.0,5000.0
+56808,Virginia City Hybrid Energy Center,Virginia Electric & Power Co,VA,36.916389,-82.33806,668.0,7,0,138.0,138,1400.0,1200.0
+57046,Archer Daniels Midland Columbus,Archer Daniels Midland Co,NE,41.416442,-97.28633,71.4,10,0,345.0,345;230;115,3900.0,2700.0
+57915,WE Soda Alkalai LLC,WE Soda Alkali,WY,41.621667,-109.8119,41.0,0,0,,,0.0,0.0
+57928,SIUC,Southern Illinois University Carbondale,IL,37.711944,-89.215,3.5,0,0,,,0.0,0.0
+57949,MSC Sebewaing,Michigan Sugar Company,MI,43.741111,-83.44722,2.5,0,0,,,0.0,0.0
+62319,Western Sugar Cooperative - Billings,Western Sugar Cooperative - Billings,MT,45.765346,-108.4992,1.5,6,0,138.0,138;115,950.0,750.0

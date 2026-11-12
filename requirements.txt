@@ -1,0 +1,6 @@
+pandas>=2.2
+openpyxl
+geopandas>=1.0
+pyogrio
+shapely>=2.0
+requests

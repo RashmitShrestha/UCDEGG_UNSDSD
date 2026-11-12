@@ -1,0 +1,4 @@
+# downloaded EIA workbooks and HIFLD query cache
+data/
+.venv/
+__pycache__/

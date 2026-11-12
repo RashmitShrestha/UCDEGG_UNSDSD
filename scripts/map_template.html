@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Coal Plants &amp; Truck Freight</title>
+<title>Fossil Plants &amp; Truck Freight</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <style>
   :root {
     --bg: #ffffff; --fg: #1f2328; --muted: #656d76; --line: #d0d7de;
-    --retired: #1a7f5a; --by2030: #d1495b; --after2030: #edae49; --none: #8c959f;
+    --retired: #1a7f5a; --idle: #7b5ea7; --by2030: #d1495b; --after2030: #edae49; --none: #8c959f;
     --truck: #3d5a80;
   }
   html, body { height: 100%; margin: 0; background: var(--bg); color: var(--fg);
@@ -46,6 +46,7 @@
 <script>
 const TRUCKS = /*TRUCKS*/null;
 const PLANTS = /*PLANTS*/null;
+const META = /*META*/null;
 
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const fmt = v => v == null ? "—" : Number(v).toLocaleString("en-US");
@@ -71,7 +72,8 @@ for (const b of TRUCK_BINS) {
 
 // ---- Plants ----
 const CATS = [
-  { id: "retired",   label: "Retired 2015–2025",  color: css("--retired") },
+  { id: "retired",   label: META.retiredLabel,    color: css("--retired") },
+  { id: "idle",      label: META.idleLabel,       color: css("--idle") },
   { id: "by2030",    label: "Retiring by 2030",   color: css("--by2030") },
   { id: "after2030", label: "Retiring 2031+",     color: css("--after2030") },
   { id: "none",      label: "No retirement date", color: css("--none") },
@@ -79,18 +81,25 @@ const CATS = [
 const radius = mw => Math.max(3, Math.sqrt(mw) / 3.2);
 
 function popup(p, c) {
-  const rows = [["Owner", p.o], ["State", p.s], ["Coal capacity", fmt(p.mw) + " MW"]];
-  if (p.c === "retired") rows.push(["Retired", p.y]);
-  else {
-    rows.push(["Units", p.u]);
+  const rows = [["Owner", p.o], ["State", p.s]];
+  const IDLE = { OS: "Out of service (not returning next year)", OA: "Out of service (returning next year)", SB: "Standby / backup" };
+  if (p.c === "idle") {
+    rows.push(["Idle fossil capacity", fmt(p.mw) + " MW"], ["Main fuel", p.f], ["Status", IDLE[p.st]], ["Idle units", p.u], ["Sector", p.sec]);
+    if (p.oo) rows.push(["Other units operating", fmt(p.oo) + " MW (non-fossil)"]);
+  } else if (p.c === "retired") {
+    rows.push(["Coal capacity", fmt(p.mw) + " MW"], ["Retired", p.y]);
+  } else {
+    rows.push(["Coal capacity", fmt(p.mw) + " MW"], ["Units", p.u]);
     rows.push(["First planned retirement", p.y ?? "None announced"]);
   }
-  if (p.c === "retired" && p.nl != null) {
-    rows.push(["Grid export capacity", "~" + fmt(p.mw) + " MW (former nameplate)"]);
+  if ((p.c === "retired" || p.c === "idle") && p.nl != null) {
+    rows.push(["Grid export capacity", "~" + fmt(p.mw) + " MW (" + (p.c === "idle" ? "idle" : "former") + " nameplate)"]);
     rows.push(["Transmission ≤1 mi", p.nl ? `up to ${fmt(p.kv)} kV (${p.nl} mapped segment${p.nl > 1 ? "s" : ""})` : "None mapped"]);
   }
-  rows.push(["Nearest freight route", `${p.fr ?? "—"} (${p.fd} mi)`]);
-  rows.push(["Busiest segment ≤10 mi", p.mt ? fmt(p.mt) + " trucks/day" : "None ≥1,000/day"]);
+  if (p.fd != null) {
+    rows.push(["Nearest freight route", `${p.fr ?? "—"} (${p.fd} mi)`]);
+    rows.push(["Busiest segment ≤10 mi", p.mt ? fmt(p.mt) + " trucks/day" : "None ≥1,000/day"]);
+  }
   return `<div class="popup"><b>${p.n}</b><span class="tag" style="background:${c.color}">${c.label}</span>
     <table>${rows.map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join("")}</table></div>`;
 }
@@ -104,14 +113,14 @@ for (const c of CATS) {
     }).bindTooltip(p.n).bindPopup(popup(p, c), { maxWidth: 320 })));
 }
 
-// default view: trucks + retired plants + plants retiring by 2030
-for (const id of ["t1", "t2", "t3", "none", "after2030", "by2030", "retired"]) layers[id].addTo(map);
+// default view: everything
+for (const id of ["t1", "t2", "t3", "none", "after2030", "by2030", "idle", "retired"]) layers[id].addTo(map);
 
 // ---- Controls ----
 const Title = L.Control.extend({ options: { position: "topleft" }, onAdd() {
   const d = L.DomUtil.create("div", "panel title");
-  d.innerHTML = `<h1>Coal plants &amp; heavy-truck corridors</h1>
-    <p>Retired and retiring U.S. coal plants against 2022 freight-truck volumes. Green sites are retired plants with grid connections already in place — candidate EV-truck charging hubs.</p>`;
+  d.innerHTML = `<h1>Idle &amp; retired power plants vs. heavy-truck corridors</h1>
+    <p>Retired coal plants, idle coal/gas/oil plants and still-running coal plants against 2022 freight-truck volumes. Green (retired) and purple (idle) sites have grid connections already in place — candidate EV-truck charging hubs.</p>`;
   L.DomEvent.disableClickPropagation(d);
   return d;
 }});
@@ -119,15 +128,15 @@ const Legend = L.Control.extend({ options: { position: "bottomleft" }, onAdd() {
   const d = L.DomUtil.create("div", "panel legend");
   const row = (id, sw, label, n) => `<label><input type="checkbox" data-id="${id}" ${map.hasLayer(layers[id]) ? "checked" : ""}>${sw}<span>${label}</span>${n != null ? `<span class="count">${n}</span>` : ""}</label>`;
   d.innerHTML =
-    `<h2>Coal plants (size ∝ MW)</h2>` +
+    `<h2>Plants (size ∝ MW)</h2>` +
     CATS.map(c => row(c.id, `<span class="sw-dot" style="background:${c.color}"></span>`, c.label, counts[c.id])).join("") +
     `<h2>Trucks per day</h2>` +
     TRUCK_BINS.map(b => row(b.id, `<span class="sw-line" style="height:${b.w + 0.5}px;opacity:${b.o + 0.2}"></span>`, b.label)).join("") +
-    `<div class="src">Plants: EIA-860M (Sep 2026) · Trucks: FHWA FAF5 2022 network assignment (modeled) · Lines: HIFLD</div>`;
+    `<div class="src">Plants: EIA-860M (${META.release}) · Trucks: FHWA FAF5 2022 network assignment (modeled) · Lines: HIFLD</div>`;
   d.addEventListener("change", e => {
     const l = layers[e.target.dataset.id];
     e.target.checked ? l.addTo(map) : map.removeLayer(l);
-    layers.retired && map.hasLayer(layers.retired) && layers.retired.eachLayer(m => m.bringToFront());
+    for (const id of ["idle", "retired"]) map.hasLayer(layers[id]) && layers[id].eachLayer(m => m.bringToFront());
   });
   L.DomEvent.disableClickPropagation(d);
   L.DomEvent.disableScrollPropagation(d);

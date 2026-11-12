@@ -11,7 +11,7 @@ Retired coal plants already have a high-voltage grid connection: a switchyard, s
 | Coal plants fully retired, 2015–2025 (lower 48) | **184 plants** |
 | Combined coal capacity of those plants | **104,447 MW (≈104.4 GW)** |
 | Median plant size | 385 MW (mean 568 MW; range 1.5–2,741 MW) |
-| Retired plants with a 230 kV+ line within 1 mile | 107 plants, ≈84.0 GW |
+| Retired plants with a 230 kV+ line within 1 mile | 111 plants, ≈89.2 GW |
 | Retired plants within 5 miles of a 1,000+ trucks/day freight route | 95 plants, ≈47.4 GW |
 | More plants with coal units scheduled to retire by 2030 | 33 plants, ≈36.8 GW of units retiring |
 
@@ -48,17 +48,17 @@ To check whether the high-voltage lines are still there, I queried the HIFLD tra
 
 | Highest voltage within 1 mile | Plants | Retired coal MW | Typical capacity of one circuit* |
 |---|---:|---:|---|
-| 500–765 kV | 20 | 24,252 | ~2,500–4,000 MW |
-| 345 kV | 47 | 41,034 | ~1,200 MW |
+| 500–765 kV | 21 | 26,156 | ~2,500–4,000 MW |
+| 345 kV | 50 | 44,324 | ~1,200 MW |
 | 230 kV | 40 | 18,688 | ~450 MW |
-| 115–161 kV | 52 | 13,544 | ~150–250 MW |
-| None mapped within 1 mile | 25 | 6,929 | — |
+| 115–161 kV | 56 | 14,615 | ~150–250 MW |
+| None mapped within 1 mile | 17 | 664 | — |
 
 \*These are rough planning figures for one overhead AC circuit. Actual ratings depend on the conductor, weather and terminal equipment. Most sites have several circuits.
 
-- **159 of 184 sites (≈97 GW)** still have mapped transmission within 1 mile, and **107 sites (≈84 GW)** have a line at 230 kV or higher. At that voltage, a single circuit can carry hundreds of megawatts to several gigawatts.
-- The 25 sites with no mapped line are most likely gaps in HIFLD's data or offsets in the plant coordinates, not proof that the lines are gone. For example, Bruce Mansfield (PA, 2.7 GW) had large 345 kV connections and still shows none. These sites need manual checks.
-- `retired_plants_transmission.csv` also has a `line_thermal_mw_est` column, which adds up the rough ratings of every mapped line segment. **Don't quote it as site capacity.** HIFLD splits lines into many segments, and lines that simply pass through a substation get counted too. That inflates the total (712 GW across all sites) far above what any site could actually draw. Use it only to rank sites against each other.
+- **167 of 184 sites (≈104 GW)** still have mapped transmission within 1 mile, and **111 sites (≈89 GW)** have a line at 230 kV or higher. At that voltage, a single circuit can carry hundreds of megawatts to several gigawatts.
+- The 17 sites with no mapped line are all small (664 MW combined): mostly industrial or institutional boilers such as paper mills and campus steam plants, which may never have had a dedicated high-voltage line. An earlier run reported 25 such sites, including Bruce Mansfield (PA, 2.7 GW) and Wansley (GA, 1.9 GW). Those were failed HIFLD queries that had been recorded as "no lines". Re-queried, they show 345 kV and 500 kV lines respectively. `fetch_transmission.py` now stops with an error when a query fails instead of recording zero lines.
+- `retired_plants_transmission.csv` also has a `line_thermal_mw_est` column, which adds up the rough ratings of every mapped line segment. **Don't quote it as site capacity.** HIFLD splits lines into many segments, and lines that simply pass through a substation get counted too. That inflates the total (762 GW across all sites) far above what any site could actually draw. Use it only to rank sites against each other.
 
 ### What that means for truck charging
 
@@ -84,7 +84,7 @@ The median retired plant is 4.8 miles from such a route.
 
 ### Shortlist: a strong grid connection next to heavy truck traffic
 
-These sites meet all three filters: ≤5 miles to the freight network, ≥230 kV transmission within 1 mile, and ≥2,500 trucks/day within 10 miles. **34 plants, 22.1 GW** qualify. The top 15 by truck volume:
+These sites meet all three filters: ≤5 miles to the freight network, ≥230 kV transmission within 1 mile, and ≥2,500 trucks/day within 10 miles. **35 plants, 24.9 GW** qualify. The top 15 by truck volume:
 
 | Plant | State | Coal MW | Retired | Max kV | Miles to route | Route | Busiest segment ≤10 mi (trucks/day) |
 |---|---|---:|---:|---:|---:|---|---:|
@@ -115,6 +115,48 @@ These sites meet all three filters: ≤5 miles to the freight network, ≥230 kV
 5. **Coal ash and site cleanup.** Ash ponds and contamination may limit which parts of a site can be built on.
 6. **Truck counts are modeled, not counted.** FAF5 assigns estimated freight flows to the road network, so it shows corridor demand, not actual stops at a site.
 
+## Idle (not retired) fossil plants: coal, gas and oil
+
+Everything above covers **retired** coal plants. EIA-860M also lists generators that are still on the books but not running. They sit on the "Operating" sheet with one of three statuses:
+
+| Status | EIA definition | How idle |
+|---|---|---|
+| **OS** | Out of service, not expected to return next calendar year | Most idle. Effectively mothballed |
+| **OA** | Out of service, expected to return next calendar year | Temporarily down (repairs, economics) |
+| **SB** | Standby/backup: available but not normally used | Runs occasionally (peaks, emergencies) |
+
+From the Sep 2026 release (`scripts/idle_fossil_plants.py`):
+
+| | Units | MW |
+|---|---:|---:|
+| All idle fossil generators (OS + OA + SB), incl. at plants that otherwise run | 1,800 | 17,842 |
+| …of which coal / gas / oil | 22 / 379 / 1,399 | 2,499 / 11,464 / 3,876 |
+| Plants where **every** fossil unit is idle | 370 plants | 10,176 |
+| …of those, ≥20 MW | 65 plants | 8,514 |
+| …≥20 MW, lower 48, ≤5 mi from a 1,000+ trucks/day route | 32 plants | 5,074 |
+
+- **Idle fossil is small next to retired coal.** About 10 GW at fully idle plants, compared with 104 GW of retired coal. Most idle units are small standby diesel generators: 1,295 oil units at SB, 2.9 GW in total.
+- Of the ≥20 MW fully idle plants, 16 (3.5 GW) are mainly **OS**, which is the closest to "sitting there doing nothing". 47 (5.0 GW) are mainly **SB**, which still run sometimes, so their grid connection is not entirely free.
+- Some sites are industrial or commercial backup generators, such as refineries and data centers ("SC 1 Data Center"). Their connection serves an on-site load, not the bulk grid. Filter by the `sector` column (Electric Utility / IPP rows are the relevant ones: 41 plants, 7.4 GW).
+- Another 7.7 GW of idle units sit at plants that still have other fossil units running, for example Big Cajun 2 (LA, 658 MW coal OS) and Merrimack (NH, 346 MW coal OS). These are in `idle_fossil_units.csv` but not in the plant list, because the site's connection is still in use.
+
+Largest fully idle plants (≥20 MW):
+
+| Plant | State | Fuel | Status | Idle MW | Miles to route | Busiest segment ≤10 mi (trucks/day) |
+|---|---|---|---|---:|---:|---:|
+| Sandy Creek Energy Station | TX | coal | OS | 1,008 | 1.9 | 1,708 |
+| Rockingham County CT Station | NC | gas | SB | 978 | 6.1 | 1,709 |
+| Middletown | CT | oil | OS | 786 | 2.5 | 3,214 |
+| Indian River | FL | gas | OS | 609 | 2.7 | 2,297 |
+| Elizabeth River Power Station | VA | gas | SB | 389 | 5.0 | 3,073 |
+| MPH Elwood | IL | gas | OS | 384 | 3.7 | 7,939 |
+| Fredonia (WA) | WA | gas | SB | 376 | 4.2 | 2,182 |
+| NAEA Lakewood LLC | NJ | gas | SB | 288 | 0.2 | 5,362 |
+| Louisiana 2 | LA | gas | SB | 175 | 3.5 | 5,924 |
+| Hazelton | PA | gas | SB | 172 | 1.2 | 4,953 |
+
+Transmission (`idle_plants_transmission.csv`, the 61 plants in the lower 48 that are ≥20 MW): **27 plants (6.6 GW) have a 230 kV+ line within 1 mile**. 17 have no mapped line, mostly small on-site plants.
+
 ## Data sources
 
 | Data | Source | Used for |
@@ -124,10 +166,24 @@ These sites meet all three filters: ≤5 miles to the freight network, ≥230 kV
 | Transmission lines | DHS / CISA **HIFLD "Electric Power Transmission Lines"** (ArcGIS feature service, last data edit Sep 2023). https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Electric_Power_Transmission_Lines/FeatureServer/0 | Line voltage near each retired plant |
 | Basemap | Esri World Light Gray Canvas | Interactive map only |
 
-The EIA vintage and FAF5 year are taken from the source note on the original map. The script that built `coal_trucks.gpkg` isn't in this repo, so if it can be found, add it to confirm the exact EIA file and filters used.
+The plant layers in `coal_trucks.gpkg` are rebuilt from the EIA workbook by `scripts/build_coal_plants.py`, which reproduces the original Sep 2026 layers exactly (same 206 operating and 184 retired plants, same MW). The FAF5 truck layer is fixed input and isn't rebuilt.
 
 ## Files and reproduction
 
-- `scripts/fetch_transmission.py` → `retired_plants_transmission.csv` (queries HIFLD; takes about 10 minutes)
-- `scripts/retired_truck_proximity.py` → `retired_plants_truck_proximity.csv` (same metrics as the operating-plant CSV)
-- `scripts/build_map.py` + `scripts/map_template.html` → `coal_trucks_interactive.html`
+One command rebuilds everything from the newest EIA-860M release:
+
+```bash
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt   # once
+.venv/bin/python update.py
+```
+
+`update.py` runs these steps in order (each can also be run on its own):
+
+1. `scripts/fetch_eia.py` finds and downloads the latest monthly workbook into `data/raw/eia860m/` (git-ignored). EIA-860M is cumulative, so only the newest file is needed.
+2. `scripts/build_coal_plants.py` → coal plant layers in `coal_trucks.gpkg`, `coal_plants_truck_proximity.csv`, `retired_plants_truck_proximity.csv`
+3. `scripts/idle_fossil_plants.py` → `idle_fossil_units.csv`, `idle_fossil_plants.csv`
+4. `scripts/fetch_transmission.py` → `retired_plants_transmission.csv`, `idle_plants_transmission.csv`. It queries HIFLD, about 10 minutes the first time. Results are cached in `data/cache/hifld/`, so later runs only query new plants. Use `--skip-transmission` to skip this step.
+5. `scripts/summary_stats.py` → `summary_stats.md` (headline numbers, auto-generated)
+6. `scripts/build_map.py` + `scripts/map_template.html` → `coal_trucks_interactive.html`
+
+This document is written by hand. After an update, compare its tables with `summary_stats.md` and copy over any changed numbers. `coal_trucks_conus.png` is a static image from the original analysis and is not regenerated.

@@ -1,0 +1,62 @@
+Plant ID,plant,owner,state,lat,lon,idle_fossil_mw,main_fuel,main_status,n_lines_1mi,n_lines_unknown_kv,max_kv,voltages_kv,line_thermal_mw_est,line_thermal_n1_mw_est
+56611,Sandy Creek Energy Station,Sandy Creek Energy Associates LP,TX,31.474378,-96.95715,1008.0,coal,OS,5,0,345.0,345;138,5000.0,3800.0
+55116,Rockingham County CT Station,"Duke Energy Carolinas, LLC",NC,36.3297,-79.8297,977.5,gas,SB,6,0,230.0,230,2700.0,2250.0
+562,Middletown,Middletown Power LLC,CT,41.554944,-72.57908,786.4,oil,OS,11,0,345.0,345;115,5850.0,4650.0
+55318,Indian River,Orlando Utilities Comm,FL,28.493176,-80.78025,609.0,gas,OS,11,0,230.0,230;115,3450.0,3000.0
+52087,Elizabeth River Power Station,Virginia Electric & Power Co,VA,36.775,-76.3083,388.79999999999995,gas,SB,20,0,230.0,230;115,5700.0,5250.0
+69979,MPH Elwood,"MPH Elwood, LLC",IL,41.437032,-88.12234,384.0,gas,OS,7,0,345.0,345,8400.0,7200.0
+607,Fredonia (WA),Puget Sound Energy Inc,WA,48.4558,-122.4358,375.99999999999994,gas,SB,5,0,230.0,230;115,1050.0,600.0
+56328,Harry D Mattison Gas Plant,Southwestern Electric Power Co,AR,36.1855,-94.2841,349.0,gas,SB,7,0,345.0,345;161,2700.0,1500.0
+54640,NAEA Lakewood LLC,"Essential Power Operating Company, LLC",NJ,40.0613,-74.1686,288.2,gas,SB,7,0,230.0,230,3150.0,2700.0
+54854,Sun Peak Generating Station,Nevada Power Co,NV,36.1375,-115.0339,222.0,gas,SB,7,0,230.0,230;138,1900.0,1450.0
+1392,Louisiana 2,Entergy Louisiana LLC,LA,30.4922,-91.1864,175.0,gas,SB,14,0,230.0,230,6300.0,5850.0
+10870,Hazelton,Hazleton Generation LLC,PA,40.928161,-76.04093,171.5,gas,SB,4,0,230.0,230,1800.0,1350.0
+10849,Silver Bay Power,Cleveland Cliffs Inc,MN,47.286573,-91.26053,131.6,coal,OS,5,0,115.0,115,750.0,600.0
+6619,Burlington (CO),"Tri-State G & T Assn, Inc",CO,39.3561,-102.2431,129.4,oil,SB,5,0,230.0,230;115,1650.0,1200.0
+883,Waukegan,Midwest Generations EME LLC,IL,42.3833,-87.8133,112.0,oil,SB,16,0,345.0,345;138,7200.0,6000.0
+6013,Olive,City of Burbank Water and Power - (CA),CA,34.1764,-118.3147,109.7,gas,SB,0,0,,,0.0,0.0
+59074,"SC 1 Data Center, Phase 2",Xeres Ventures LLC,CA,37.361667,-121.9436,99.6,oil,SB,1,0,115.0,115,150.0,0.0
+10677,CES Placerita Power Plant,CES Placerita Inc,CA,34.3801,-118.4999,90.0,gas,OS,11,0,1000.0,1000;500;230,20800.0,16800.0
+1439,Houma,Terrebonne Parish Consol Gov't,LA,29.5806,-90.7225,78.9,gas,OS,4,0,115.0,115,600.0,450.0
+10743,Morgantown Energy Facility,Morgantown Energy Associates,WV,39.6397,-79.96056,68.9,coal,OS,2,0,138.0,138,400.0,200.0
+7452,Roseville Power Plant #2,City of Roseville - (CA),CA,38.810677,-121.3238,66.0,gas,SB,4,0,230.0,230;115,1200.0,750.0
+54451,Los Angeles Refinery Wilmington,Phillips 66 - Los Angeles,CA,33.7686,-118.2867,58.5,gas,OS,1,0,138.0,138,200.0,0.0
+591,Christiana,Calpine Mid-Atlantic Generation LLC,DE,39.7302,-75.5371,55.0,oil,SB,7,0,230.0,230;138,1900.0,1450.0
+54667,Chino Mines,FreePort-McMoRan-Corp-Chino Mines,NM,32.6956,-108.1225,54.0,gas,SB,1,0,115.0,115,150.0,0.0
+3152,Sunbury Generation LP,Sunbury Generation LP,PA,40.8361,-76.825,52.7,oil,SB,7,0,500.0,500;230,7250.0,4750.0
+54316,Archer Daniels Midland Southport,Archer Daniels Midland Co,NC,33.9397,-77.9905,52.5,gas,SB,2,0,230.0,230,900.0,450.0
+2521,West Babylon,National Grid Generation LLC,NY,40.695485,-73.34857,52.4,oil,SB,0,0,,,0.0,0.0
+10823,Deer Island Treatment Plant,Massachusetts Wtr Rauth-Deer I,MA,42.353333,-70.96278,52.0,oil,SB,0,0,,,0.0,0.0
+50270,Santa Ynez Facility,Sable Offshore Corp,CA,34.464819,-120.0444,49.3,gas,OA,0,0,,,0.0,0.0
+2801,Jamestown,Otter Tail Power Co,ND,46.905665,-98.66218,48.2,oil,SB,4,0,115.0,115,600.0,450.0
+59664,City of West Plains Power Station,City of West Plains - (MO),MO,36.748611,-91.86861,47.400000000000006,gas,SB,0,0,,,0.0,0.0
+55950,Elk Hills Cogen,California Resources Elk Hills LLC,CA,35.479146,-119.7375,46.6,gas,SB,0,0,,,0.0,0.0
+2475,Algodones,Public Service Co of NM,NM,35.384444,-106.4642,45.0,gas,OS,6,0,230.0,230;115,1200.0,750.0
+62676,Epic Verona,"Epic Hosting, LLC",WI,42.996838,-89.56875,43.69999999999999,oil,SB,0,0,,,0.0,0.0
+2410,PSEG Salem Generating Station,PSEG Nuclear LLC,NJ,39.4625,-75.5358,41.8,oil,SB,7,0,500.0,500,17500.0,15000.0
+10501,Mid-Set Cogeneration,Mid Set Cogeneration Co,CA,35.19456,-119.571,39.1,gas,OS,3,0,115.0,115,450.0,300.0
+61482,"CoreSite Real Estate 3032 Coronado, L.P.","CoreSite Real Estate 3032 Coronado, L.P.",CA,37.376181,-121.9731,39.0,oil,SB,0,0,,,0.0,0.0
+2244,North Denver,City of Hastings - (NE),NE,40.598839,-98.38863,39.0,gas,SB,2,0,115.0,115,300.0,150.0
+58075,El Dorado Refinery,Frontier El Dorado Refinery LLC,KS,37.792778,-96.87722,38.9,gas,SB,2,0,138.0,138,400.0,200.0
+50131,Coalinga Cogeneration,Coalinga Cogeneration Co,CA,36.1807,-120.3885,38.4,gas,OS,0,0,,,0.0,0.0
+50864,Sargent Canyon Cogeneration,Sargent Canyon Cogeneration Co,CA,35.9359,-120.8408,38.2,gas,OS,0,0,,,0.0,0.0
+69363,"CoreSite Real Estate SV9, L.P.","CoreSite Real Estate SV9, L.P.",CA,37.3749,-121.9692,31.5,oil,SB,6,0,115.0,115,900.0,750.0
+50148,Linde Wilmington,Linde Inc,CA,33.78856,-118.2294,31.0,gas,SB,3,0,230.0,230,1350.0,900.0
+62423,Regeneron Pharmaceuticals Inc.,Regeneron Pharmaceuticals Inc.,NY,41.07875,-73.82227,30.3,oil,SB,10,0,345.0,345,12000.0,10800.0
+69279,NEWPP,"Generate ER-NG, LLC",TX,29.933747,-95.19986,30.0,gas,SB,2,0,138.0,138,400.0,200.0
+54239,Naval Submarine Base Kings Bay,Kings Bay Naval Base,GA,30.7917,-81.5333,30.0,oil,SB,2,0,230.0,230,900.0,450.0
+7436,Vernon,City of Vernon - (CA),CA,33.9986,-118.2219,30.0,oil,OS,4,0,230.0,230,1800.0,1350.0
+54823,Smithfield Farmland Corp Bladen,Smithfield Fresh Meats Corp.,NC,34.74625,-78.80729,28.5,oil,SB,4,0,230.0,230;115,1500.0,1050.0
+7451,Lodi,Northern California Power Agny,CA,38.146571,-121.3005,27.4,gas,SB,0,0,,,0.0,0.0
+3785,Tasley,Calpine Mid-Atlantic Generation LLC,VA,37.7061,-75.7031,27.0,oil,SB,0,0,,,0.0,0.0
+68889,"CoreSite Real Estate 3045 Stender, LP","CoreSite Real Estate 3045 Stender, LP",CA,37.3772,-121.9717,27.0,oil,SB,5,0,115.0,115,750.0,600.0
+10803,Ogdensburg Power,AG Energy LP,NY,44.7258,-75.4417,26.9,gas,OS,4,0,115.0,115,600.0,450.0
+58157,University of Rochester,University of Rochester,NY,43.123889,-77.62889,25.4,gas,OA,5,0,115.0,115,750.0,600.0
+2942,St Marys,City of St Marys - (OH),OH,40.5458,-84.3889,25.0,oil,SB,0,0,,,0.0,0.0
+3352,Lake Preston,Otter Tail Power Co,SD,44.364871,-97.38106,24.1,oil,SB,0,0,,,0.0,0.0
+1840,Plant Four,City of Marquette - (MI),MI,46.575965,-87.40358,24.0,oil,SB,11,0,345.0,345;138,3200.0,2000.0
+1166,Mt Pleasant,City of Mt Pleasant - (IA),IA,40.971826,-91.55122,24.0,oil,SB,0,0,,,0.0,0.0
+2243,Don Henry,City of Hastings - (NE),NE,40.583155,-98.42006,22.0,gas,SB,3,0,115.0,115,450.0,300.0
+1989,Litchfield,Litchfield Public Utilities,MN,45.128164,-94.53515,21.900000000000002,oil,SB,0,0,,,0.0,0.0
+61850,Amana Society Service Company,Amana Society Service Co,IA,41.79323,-91.89179,21.6,oil,SB,0,0,,,0.0,0.0
+10685,Westend Facility,Searles Valley Minerals Operations Inc.,CA,35.7075,-117.3956,20.0,gas,OS,3,0,115.0,115,450.0,300.0
